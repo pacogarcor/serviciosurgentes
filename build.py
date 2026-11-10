@@ -116,7 +116,7 @@ def pie(base):
     <div><h4>Servicios</h4><ul>{"".join(f"<li>{e(s['nombre'])}</li>" for s in SERVICIOS)}</ul></div>
     <div><h4>Directorio</h4><ul><li><a href="{base}index.html#provincias">Todas las provincias</a></li><li><a href="{base}index.html#metodo">Cómo funciona</a></li><li><a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Contacto</a></li></ul></div>
   </div>
-  <div class="wrap foot__legal"><span>© {date.today().year} {SITE}</span><span>Actualizado el {fecha_es(date.today())}</span></div>
+  <div class="wrap foot__legal"><span>© {date.today().year} {SITE}</span></div>
 </footer>
 <script src="{base}js/main.js"></script>'''
 
@@ -285,7 +285,7 @@ def pagina_provincia(p, idx, empresas):
 <section class="sec">
   <div class="wrap">
     <div class="cards">{"".join(cajas)}</div>
-    <p class="note muted">Actualizado el {fecha_es(date.today())} · {SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa. ¿Eres una de estas empresas y quieres modificar o retirar tus datos? <a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Escríbenos</a>.</p>
+    <p class="note muted">{SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa. ¿Eres una de estas empresas y quieres modificar o retirar tus datos? <a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Escríbenos</a>.</p>
     {otras_html}
     <div class="pager">
       <a href="{prev_p["slug"]}.html">← {e(prev_p["nombre"])}</a>
