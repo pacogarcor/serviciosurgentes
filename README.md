@@ -23,7 +23,7 @@ Directorio estático de servicios urgentes por provincia (52 provincias × 8 ser
    ```
    - `whatsapp`: número con prefijo de país, sin `+` ni espacios.
    - `imagen`: ruta dentro del proyecto (p. ej. `img/empresas/...`) o URL completa. Si se deja vacía se usa la imagen genérica del servicio.
-   - Mientras una plaza no tenga WhatsApp ni web aparece como **«Plaza disponible»** y su botón de WhatsApp lleva al número del propietario (`WA_CONTACTO` en `build.py`).
+   - Mientras una plaza no tenga WhatsApp ni web aparece como **«Plaza disponible»** con los botones desactivados.
 2. Ejecuta `python3 build.py`.
 3. Haz commit y push: Vercel publica automáticamente.
 

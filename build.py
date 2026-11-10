@@ -240,8 +240,7 @@ def pagina_provincia(p, idx, empresas):
         if wa:
             wa_link = f'<a class="btn btn--wa" href="https://wa.me/{wa}?text={msg}" target="_blank" rel="noopener">{WA_SVG} WhatsApp</a>'
         else:
-            q = urllib.parse.quote(f"Hola, quiero la plaza de {s['nombre']} en {p['nombre']} en {SITE}")
-            wa_link = f'<a class="btn btn--wa" href="https://wa.me/{WA_CONTACTO}?text={q}" target="_blank" rel="noopener">{WA_SVG} WhatsApp</a>'
+            wa_link = f'<span class="btn btn--wa is-off" aria-disabled="true">{WA_SVG} WhatsApp</span>'
         web = emp.get("web")
         web_link = (f'<a class="btn btn--ghost" href="{e(web)}" target="_blank" rel="noopener">Web ↗</a>' if web
                     else '<span class="btn btn--ghost is-off" aria-disabled="true">Web ↗</span>')
