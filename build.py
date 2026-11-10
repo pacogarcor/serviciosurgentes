@@ -27,11 +27,11 @@ ICONOS = {
  "cerrajeros": '<circle cx="22" cy="32" r="11"/><circle cx="22" cy="32" r="4"/><path d="M33 32h22M47 32v8M53 32v6"/>',
  "fontaneros": '<path d="M10 22h22v-8h10v8h6a8 8 0 0 1 8 8v4h-10v-2H10z"/><path d="M51 44c0 4-3 7-5 9-2-2-5-5-5-9 0-3 5-8 5-8s5 5 5 8z"/>',
  "electricistas": '<path d="M36 6 14 36h16l-4 22 24-32H34z"/>',
- "desatascos": '<path d="M8 18h30a10 10 0 0 1 10 10v28"/><path d="M8 30h22a6 6 0 0 1 6 6v20"/><path d="M8 18v12M36 56h12"/>',
+ "reformas": '<path d="M8 30 32 10l24 20"/><path d="M14 26v28h36V26"/><path d="M26 54V40h12v14"/><path d="M44 8v10"/>',
+ "pintores": '<rect x="10" y="8" width="40" height="14" rx="3"/><path d="M50 15h4v12H32v8"/><rect x="28" y="35" width="8" height="21" rx="2"/>',
+ "carpinteria": '<path d="M6 46 40 12l8 8-34 34H6z"/><path d="M34 18l8 8M12 40l4 4M18 34l4 4M24 28l4 4"/><path d="M44 52h14"/>',
+ "aluminio": '<rect x="10" y="8" width="44" height="48" rx="2"/><rect x="16" y="14" width="14" height="36"/><rect x="34" y="14" width="14" height="36"/><path d="M28 30v4M36 30v4"/>',
  "cristaleros": '<rect x="10" y="10" width="44" height="44" rx="2"/><path d="M10 32h44M32 10v44M16 24l8-8M38 48l10-10"/>',
- "gruas": '<path d="M6 44V30l8-8h14v22"/><path d="M28 44h30V34H28"/><path d="M40 34 52 14l4 4"/><path d="M56 18v8"/><circle cx="16" cy="46" r="5"/><circle cx="46" cy="46" r="5"/>',
- "calderas": '<rect x="14" y="8" width="36" height="48" rx="4"/><path d="M32 22c5 5 7 9 7 13a7 7 0 0 1-14 0c0-3 2-5 4-7 0 3 1 5 3 5 0-4-2-7 0-11z"/><path d="M22 50h20"/>',
- "persianas": '<rect x="10" y="8" width="44" height="8" rx="2"/><path d="M14 16v34h36V16M14 24h36M14 32h36M14 40h36M32 50v6"/>',
 }
 
 def icon(slug, size=28, cls="ico"):
@@ -156,7 +156,7 @@ def portada():
     servs = "".join(
         f'<div class="serv">{icon(s["slug"], 40)}<h3>{e(s["nombre"])}</h3><p>{e(s["desc"])}</p></div>' for s in SERVICIOS)
     faqs = [
-        ("¿Qué es serviciosurgentes.es?", "Un directorio por provincia con una empresa de referencia para cada uno de los 8 servicios urgentes más demandados: cerrajería, fontanería, electricidad, desatascos, cristalería, grúas, calderas y persianas."),
+        ("¿Qué es serviciosurgentes.es?", "Un directorio por provincia con una empresa de referencia para cada uno de los 8 servicios urgentes más demandados: cerrajería, fontanería, electricidad, reformas, pintura, carpintería, aluminio y cristalería."),
         ("¿Cómo contacto con una empresa?", "Entra en tu provincia y pulsa el botón de WhatsApp de la empresa para escribirle directamente, o visita su web. Sin formularios ni intermediarios."),
         ("¿Prestáis vosotros los servicios?", "No. Somos una plataforma de información. El presupuesto y el trabajo los acuerdas directamente con la empresa."),
         ("Tengo una empresa, ¿cómo aparezco?", "Cada provincia tiene una plaza por servicio. Escríbenos por WhatsApp desde el botón «Anúnciate» y te contamos la disponibilidad."),
@@ -164,7 +164,7 @@ def portada():
     faq = "".join(f'<details class="faq__item"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in faqs)
     total = len(PROVINCIAS)
     return head(f"Servicios urgentes en España: directorio por provincia | {SITE}",
-                "Cerrajeros, fontaneros, electricistas, desatascos, cristaleros, grúas, calderas y persianas en las 52 provincias. Contacto directo por WhatsApp.",
+                "Cerrajeros, fontaneros, electricistas, reformas, pintores, carpintería, aluminio y cristaleros en las 52 provincias. Contacto directo por WhatsApp.",
                 base, "/") + cabecera(base) + f'''
 <main id="contenido">
 <section class="hero">
@@ -261,7 +261,7 @@ def pagina_provincia(p, idx, empresas):
                     if q["comunidad"] == p["comunidad"] and q["slug"] != p["slug"])
     otras_html = f'<div class="near"><h4>Otras provincias de {e(p["comunidad"])}</h4><div>{otras}</div></div>' if otras else ""
     return head(f"Servicios urgentes en {p['nombre']}: cerrajeros, fontaneros y más | {SITE}",
-                f"Cerrajeros, fontaneros, electricistas, desatascos, cristaleros, grúas, calderas y persianas en {p['nombre']}. Contacto directo por WhatsApp y web.",
+                f"Cerrajeros, fontaneros, electricistas, reformas, pintores, carpintería, aluminio y cristaleros en {p['nombre']}. Contacto directo por WhatsApp y web.",
                 base, f"/provincias/{p['slug']}") + cabecera(base) + f'''
 <main id="contenido">
 <section class="phero">

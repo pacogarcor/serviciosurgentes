@@ -1,10 +1,10 @@
 [
 {"slug":"cerrajeros","nombre":"Cerrajeros","singular":"cerrajería","desc":"Apertura de puertas, cambio de cerraduras y bombines 24 h."},
 {"slug":"fontaneros","nombre":"Fontaneros","singular":"fontanería","desc":"Fugas de agua, averías, grifería y reparaciones urgentes."},
-{"slug":"electricistas","nombre":"Electricistas","singular":"electricidad","desc":"Cortes de luz, cuadros eléctricos y boletines."},
-{"slug":"desatascos","nombre":"Desatascos","singular":"desatascos","desc":"Tuberías, arquetas, camión cuba e inspección con cámara."},
-{"slug":"cristaleros","nombre":"Cristaleros","singular":"cristalería","desc":"Reposición urgente de cristales, escaparates y mamparas."},
-{"slug":"gruas","nombre":"Grúas 24 h","singular":"grúas y asistencia","desc":"Asistencia en carretera, remolque y traslado de vehículos."},
-{"slug":"calderas","nombre":"Calderas y gas","singular":"calderas","desc":"Reparación de calderas, calentadores y revisiones de gas."},
-{"slug":"persianas","nombre":"Persianas","singular":"persianas","desc":"Reparación y motorización de persianas y cierres metálicos."}
+{"slug":"electricistas","nombre":"Electricistas","singular":"electricidad","desc":"Cortes de luz, cuadros eléctricos, instalaciones y boletines."},
+{"slug":"reformas","nombre":"Reformas","singular":"reformas","desc":"Reformas integrales de pisos, cocinas, baños y locales."},
+{"slug":"pintores","nombre":"Pintores","singular":"pintura","desc":"Pintura de pisos, fachadas, comunidades y locales."},
+{"slug":"carpinteria","nombre":"Carpintería","singular":"carpintería","desc":"Puertas, armarios a medida, tarimas y reparaciones de madera."},
+{"slug":"aluminio","nombre":"Aluminio","singular":"carpintería de aluminio","desc":"Ventanas, cerramientos, mamparas y puertas de aluminio y PVC."},
+{"slug":"cristaleros","nombre":"Cristaleros","singular":"cristalería","desc":"Reposición urgente de cristales, escaparates y espejos."}
 ]
