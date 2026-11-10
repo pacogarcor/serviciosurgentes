@@ -277,7 +277,7 @@ def pagina_provincia(p, idx, empresas):
     <nav class="crumbs" aria-label="Migas de pan"><a href="../index.html">Inicio</a> / <a href="../index.html#provincias">Provincias</a> / <span>{e(p["nombre"])}</span></nav>
     <p class="tag">{e(p["comunidad"])} · Guía local</p>
     <h1>Servicios urgentes<br><span class="lime">en {e(p["nombre"])}</span></h1>
-    <p class="phero__lead">Estas son las empresas de referencia en {e(p["nombre"])} para los 8 servicios urgentes. Pulsa WhatsApp para escribirles directamente o visita su web.</p>
+    <p class="phero__lead">Estas son las empresas de referencia en {e(p["nombre"])}. Pulsa WhatsApp para escribirles directamente o visita su web.</p>
     <div class="chips">{chips}</div>
   </div>
 </section>
