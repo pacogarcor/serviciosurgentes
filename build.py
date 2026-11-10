@@ -231,25 +231,34 @@ def pagina_provincia(p, idx, empresas):
     for s in SERVICIOS:
         emp = empresas[p["slug"]][s["slug"]]
         nombre = emp.get("nombre") or f"Tu empresa de {s['singular']} en {p['nombre']}"
+        img_propia = bool(emp.get("imagen"))
         img = emp.get("imagen") or f"img/servicios/{s['slug']}.svg"
         if not img.startswith(("http://", "https://", "/")):
             img = base + img
+        fallback = f"{base}img/servicios/{s['slug']}.svg"
         msg = urllib.parse.quote(f"Hola, os contacto desde {SITE}. Necesito un servicio de {s['singular']} en {p['nombre']}.")
         wa = emp.get("whatsapp", "").replace("+", "").replace(" ", "")
-        disponible = not wa and not emp.get("web")
+        tel = emp.get("telefono", "").replace(" ", "")
+        web = emp.get("web")
+        disponible = not wa and not web and not tel
         if wa:
             wa_link = f'<a class="btn btn--wa" href="https://wa.me/{wa}?text={msg}" target="_blank" rel="noopener">{WA_SVG} WhatsApp</a>'
+        elif tel:
+            wa_link = f'<a class="btn btn--tel" href="tel:+34{tel}">{TEL_SVG} Llamar</a>'
         else:
             wa_link = f'<span class="btn btn--wa is-off" aria-disabled="true">{WA_SVG} WhatsApp</span>'
-        web = emp.get("web")
-        web_link = (f'<a class="btn btn--ghost" href="{e(web)}" target="_blank" rel="noopener">Web ↗</a>' if web
+        web_link = (f'<a class="btn btn--ghost" href="{e(web)}" target="_blank" rel="noopener nofollow">Web ↗</a>' if web
                     else '<span class="btn btn--ghost is-off" aria-disabled="true">Web ↗</span>')
         badge = '<span class="card__badge">Plaza disponible</span>' if disponible else ''
+        dir_html = f'<p class="card__dir">📍 {e(emp["direccion"])}</p>' if emp.get("direccion") else ''
+        img_cls = "card__img card__img--logo" if img_propia else "card__img"
+        onerr = f' onerror="this.onerror=null;this.src=\'{fallback}\';this.parentNode.classList.remove(\'card__img--logo\')"' if img_propia else ''
         cajas.append(f'''<article class="card" id="{s["slug"]}">
-  <div class="card__img"><img src="{e(img)}" alt="{e(nombre)}" loading="lazy" width="640" height="400">{badge}</div>
+  <div class="{img_cls}"><img src="{e(img)}" alt="Logo de {e(nombre)}" loading="lazy" width="640" height="400"{onerr}>{badge}</div>
   <div class="card__body">
     <p class="card__serv">{icon(s["slug"], 20)} {e(s["nombre"])}</p>
     <h3>{e(nombre)}</h3>
+    {dir_html}
     <p class="muted">{e(s["desc"])}</p>
     <div class="card__cta">{wa_link}{web_link}</div>
   </div>
@@ -276,7 +285,7 @@ def pagina_provincia(p, idx, empresas):
 <section class="sec">
   <div class="wrap">
     <div class="cards">{"".join(cajas)}</div>
-    <p class="note muted">Actualizado el {fecha_es(date.today())} · {SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa.</p>
+    <p class="note muted">Actualizado el {fecha_es(date.today())} · {SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa. ¿Eres una de estas empresas y quieres modificar o retirar tus datos? <a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Escríbenos</a>.</p>
     {otras_html}
     <div class="pager">
       <a href="{prev_p["slug"]}.html">← {e(prev_p["nombre"])}</a>
@@ -288,6 +297,7 @@ def pagina_provincia(p, idx, empresas):
 </main>
 ''' + pie(base) + "\n</body>\n</html>\n"
 
+TEL_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>'
 WA_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>'
 
 def sitemap():

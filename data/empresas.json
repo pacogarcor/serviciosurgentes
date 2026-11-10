@@ -1601,52 +1601,68 @@
   },
   "madrid": {
     "cerrajeros": {
-      "nombre": "Tu empresa de cerrajería en Madrid",
+      "nombre": "Cerrajería Gómez Gozalo",
       "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "telefono": "915517003",
+      "web": "https://gomezgozalo.com/",
+      "imagen": "https://gomezgozalo.com/wp-content/uploads/2022/10/gomez.gozalo.logo_n_ng.png",
+      "direccion": "C/ Resina 49, Nave K · Villaverde"
     },
     "fontaneros": {
-      "nombre": "Tu empresa de fontanería en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Fontanería Valía",
+      "whatsapp": "34683249200",
+      "telefono": "913205936",
+      "web": "http://www.fontaneriavalia.es/",
+      "imagen": "",
+      "direccion": "C/ Alconera 9 · San Blas"
     },
     "electricistas": {
-      "nombre": "Tu empresa de electricidad en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Eco Electricistas Madrid",
+      "whatsapp": "34675165754",
+      "telefono": "675165754",
+      "web": "https://www.ecoelectricistasmadrid.es/",
+      "imagen": "https://www.ecoelectricistasmadrid.es/images/apple-touch-icon_2x.png",
+      "direccion": "C/ General Pardiñas 15 · Salamanca"
     },
     "reformas": {
-      "nombre": "Tu empresa de reformas en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Divalmadrid Reforma Integral",
+      "whatsapp": "34618232639",
+      "telefono": "618232639",
+      "web": "https://www.divalmadrid.com/",
+      "imagen": "https://www.divalmadrid.com/wp-content/uploads/logo-divalmadrid.jpg",
+      "direccion": "C/ Arauca 5 · Madrid"
     },
     "pintores": {
-      "nombre": "Tu empresa de pintura en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Pintores Rojo",
+      "whatsapp": "34644902662",
+      "telefono": "644902662",
+      "web": "https://rojogranate.com.es/",
+      "imagen": "https://rojogranate.com.es/wp-content/uploads/2025/04/cropped-13.png",
+      "direccion": "C/ de los Arfe 59 · Ciudad Lineal"
     },
     "carpinteria": {
-      "nombre": "Tu empresa de carpintería en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "ElaboMón Carpintería",
+      "whatsapp": "34657759995",
+      "telefono": "657759995",
+      "web": "https://elabomon.com/",
+      "imagen": "https://elabomon.com/wp-content/uploads/2022/06/elabomon_montaje_en_madera.png",
+      "direccion": "C/ Doña Berenguela 66 · Latina"
     },
     "aluminio": {
-      "nombre": "Tu empresa de carpintería de aluminio en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Aluper Aluminio y PVC",
+      "whatsapp": "34630386890",
+      "telefono": "630386890",
+      "web": "https://www.aluper.es/",
+      "imagen": "https://www.aluper.es/media/images/logo.png",
+      "direccion": "Paseo Marqués de Zafra 34 · Salamanca"
     },
     "cristaleros": {
-      "nombre": "Tu empresa de cristalería en Madrid",
-      "whatsapp": "",
-      "web": "",
-      "imagen": ""
+      "nombre": "Cristalería La Laguna",
+      "whatsapp": "34609007817",
+      "telefono": "913208053",
+      "web": "https://www.cristaleriaslalaguna.com/",
+      "imagen": "https://le-de.cdn-website.com/661c99b24e034fb98bd34573809b68e8/dms3rep/multi/opt/320538-cristaleria-laguna-logo.w1024-1920w.png",
+      "direccion": "Av. de Canillejas a Vicálvaro 49 · San Blas"
     }
   },
   "malaga": {

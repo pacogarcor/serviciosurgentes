@@ -169,3 +169,10 @@ h2{font-size:clamp(40px,6vw,76px)}
   .search__row{flex-direction:column}
   .pager{flex-direction:column;text-align:center}
 }
+
+/* logos de empresa y extras de la caja */
+.card__img--logo{background:#fff;display:grid;place-items:center}
+.card__img--logo img{object-fit:contain;padding:22px 28px;width:100%;height:100%}
+.card__dir{font-size:13px;color:#c9cec4}
+.btn--tel{background:var(--lime);color:#0a0a0a}.btn--tel:hover{background:var(--lime-d)}
+.note a{color:var(--lime)}
