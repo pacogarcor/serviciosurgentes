@@ -191,3 +191,14 @@ h2{font-size:clamp(40px,6vw,76px)}
 .marquee--top{border-top:0}
 .marquee--top .marquee__track{animation-duration:45s}
 .marquee--top span{font-size:17px;padding:10px 0}
+
+/* logotipo */
+.logo__img{height:48px;width:auto;display:block}
+.foot .logo__img{height:56px}
+.hero__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,34%);column-gap:48px;align-items:start}
+.hero__in>*{grid-column:1}
+.hero__in .hero__logo{grid-column:2;grid-row:1 / span 4;align-self:center;justify-self:end;width:100%;max-width:440px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
+.hero__in .stats{grid-column:1 / -1}
+.hero h1{font-size:clamp(56px,8.4vw,132px)}
+@media (max-width:860px){.hero__in{display:block}.hero__in .hero__logo{width:180px;margin:0 0 20px;display:block}}
+.hero__in .tag{justify-self:start}

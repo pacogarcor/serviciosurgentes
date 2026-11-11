@@ -89,7 +89,7 @@ def cabecera(base, actual=""):
 <header class="top">
   <div class="wrap top__in">
     <a class="logo" href="{base}index.html" aria-label="{SITE} inicio">
-      <span class="logo__mark">SU</span><span class="logo__txt">SERVICIOS<br><b>URGENTES</b></span>
+      <img class="logo__img" src="{base}img/logo-sm.webp" alt="" width="60" height="48"><span class="logo__txt">SERVICIOS<br><b>URGENTES</b></span>
     </a>
     <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav id="nav" class="nav">
@@ -112,7 +112,7 @@ def pie(base):
     return f'''<footer class="foot">
   <div class="wrap foot__in">
     <div>
-      <a class="logo" href="{base}index.html"><span class="logo__mark">SU</span><span class="logo__txt">SERVICIOS<br><b>URGENTES</b></span></a>
+      <a class="logo" href="{base}index.html"><img class="logo__img" src="{base}img/logo-sm.webp" alt="" width="60" height="48"><span class="logo__txt">SERVICIOS<br><b>URGENTES</b></span></a>
       <p class="muted">Directorio de servicios urgentes por provincia. No prestamos los servicios: te ponemos en contacto directo con empresas locales.</p>
     </div>
     <div><h4>Servicios</h4><ul>{"".join(f"<li>{e(s['nombre'])}</li>" for s in SERVICIOS)}</ul></div>
@@ -135,7 +135,9 @@ def head(title, desc, base, canonical):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{DOMINIO}{canonical}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website">
-<link rel="icon" href="{base}img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{base}img/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="{base}img/apple-touch-icon.png">
+<meta property="og:image" content="{DOMINIO}/img/og.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{base}css/estilos.css">
@@ -172,6 +174,7 @@ def portada():
 <main id="contenido">
 <section class="hero">
   <div class="wrap hero__in">
+    <img class="hero__logo" src="img/logo.webp" alt="Logotipo de serviciosurgentes.es" width="520" height="414">
     <p class="tag">Directorio local · España</p>
     <h1>Servicios<br><span class="lime">urgentes</span><br><span class="outline">en España.</span></h1>
     <form class="search" id="buscador" autocomplete="off">
