@@ -323,7 +323,7 @@ def pagina_zona(p, z, empresas):
     chips = "".join(f'<a class="chip" href="#{s["slug"]}">{icon(s["slug"], 16)}{e(s["nombre"])}</a>' for s in SERVICIOS)
     otras = "".join(f'<a href="{o["slug"]}.html">{e(o["corto"])}</a>' for o in ZONAS[p["slug"]] if o["slug"] != z["slug"])
     lugares = ", ".join(z["lugares"])
-    titulo_corto = f'{z["nombre"]} de {p["nombre"]}' if z["nombre"].startswith("Zona") else z["nombre"]
+    titulo_corto = z.get("titulo") or (f'{z["nombre"]} de {p["nombre"]}' if z["nombre"].startswith("Zona") else z["nombre"])
     return head(f"Servicios urgentes en {titulo_corto}: cerrajeros, fontaneros y más | {SITE}",
                 f"Cerrajeros, fontaneros, electricistas, reformas, pintores, carpintería, aluminio y cristaleros en {titulo_corto}: {lugares}. Contacto directo por WhatsApp y web.",
                 base, f"/provincias/{p['slug']}/{z['slug']}") + cabecera(base) + f"""
