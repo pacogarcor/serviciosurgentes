@@ -174,7 +174,6 @@ def portada():
 <main id="contenido">
 <section class="hero">
   <div class="wrap hero__in">
-    <img class="hero__logo" src="img/logo.webp" alt="Logotipo de serviciosurgentes.es" width="520" height="414">
     <p class="tag">Directorio local · España</p>
     <h1>Servicios<br><span class="lime">urgentes</span><br><span class="outline">en España.</span></h1>
     <form class="search" id="buscador" autocomplete="off">
