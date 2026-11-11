@@ -5,6 +5,7 @@ Directorio estático de servicios urgentes por provincia (52 provincias × 8 ser
 ## Estructura
 - `index.html` – portada con buscador, desplegable de provincias en el menú y cuadrante de provincias.
 - `provincias/<slug>.html` – una página por provincia con 8 cajas (imagen, WhatsApp y web).
+- `provincias/<provincia>/<zona>.html` – subzonas (Madrid y Barcelona), definidas en `data/zonas.json`. Si una zona no tiene empresas propias en `data/empresas.json` (clave `"madrid/zona-sur"`), usa las de su provincia.
 - `data/empresas.json` – **aquí se editan las empresas** (nombre, whatsapp, web, imagen) de cada provincia y servicio.
 - `data/servicios.json` / `data/provincias.json` – listado de servicios y provincias.
 - `build.py` – genera todas las páginas a partir de los datos.

@@ -21,6 +21,7 @@ def load(name):
 
 PROVINCIAS = [dict(slug=s, nombre=n, comunidad=c) for s, n, c in load("provincias.json")]
 SERVICIOS = load("servicios.json")
+ZONAS = load("zonas.json")
 
 # ---------- iconos (SVG propios, trazo) ----------
 ICONOS = {
@@ -225,18 +226,17 @@ def portada():
 ''' + pie(base) + "\n</body>\n</html>\n"
 
 # ---------- página de provincia ----------
-def pagina_provincia(p, idx, empresas):
-    base = "../"
+def render_cajas(datos, lugar, base):
     cajas = []
     for s in SERVICIOS:
-        emp = empresas[p["slug"]][s["slug"]]
-        nombre = emp.get("nombre") or f"Tu empresa de {s['singular']} en {p['nombre']}"
+        emp = datos[s["slug"]]
+        nombre = emp.get("nombre") or f"Tu empresa de {s['singular']} en {lugar}"
         img_propia = bool(emp.get("imagen"))
         img = emp.get("imagen") or f"img/servicios/{s['slug']}.svg"
         if not img.startswith(("http://", "https://", "/")):
             img = base + img
         fallback = f"{base}img/servicios/{s['slug']}.svg"
-        msg = urllib.parse.quote(f"Hola, os contacto desde {SITE}. Necesito un servicio de {s['singular']} en {p['nombre']}.")
+        msg = urllib.parse.quote(f"Hola, os contacto desde {SITE}. Necesito un servicio de {s['singular']} en {lugar}.")
         wa = emp.get("whatsapp", "").replace("+", "").replace(" ", "")
         tel = emp.get("telefono", "").replace(" ", "")
         web = emp.get("web")
@@ -263,6 +263,17 @@ def pagina_provincia(p, idx, empresas):
     <div class="card__cta">{wa_link}{web_link}</div>
   </div>
 </article>''')
+    return "".join(cajas)
+
+def pagina_provincia(p, idx, empresas):
+    base = "../"
+    cajas_html = render_cajas(empresas[p["slug"]], p["nombre"], base)
+    zonas = ZONAS.get(p["slug"], [])
+    zonas_html = ""
+    cab_toda = ('<div class="sec__head"><div><p class="tag">Toda la provincia</p><h2>Empresas en ' + e(p["nombre"]) + '</h2></div></div>') if zonas else ""
+    if zonas:
+        celdas = "".join(f'<a class="pcell" href="{p["slug"]}/{z["slug"]}.html"><span class="pcell__n">ZONA {i+1:02d}</span><span class="pcell__name">{e(z["corto"])}</span><span class="pcell__ca">{e(", ".join(z["lugares"][:3]))}…</span><span class="pcell__go" aria-hidden="true">↗</span></a>' for i, z in enumerate(zonas))
+        zonas_html = f'<section class="sec sec--zonas"><div class="wrap"><div class="sec__head"><div><p class="tag">{e(p["nombre"])} por zonas</p><h2>Elige tu zona</h2></div><div class="sec__side"><p class="muted">{e(p["nombre"])} es muy grande: entra en tu zona para ver empresas más cercanas a ti.</p></div></div><div class="pgrid pgrid--zonas">{celdas}</div></div></section>'
     chips = "".join(f'<a class="chip" href="#{s["slug"]}">{icon(s["slug"], 16)}{e(s["nombre"])}</a>' for s in SERVICIOS)
     prev_p = PROVINCIAS[idx-1]; next_p = PROVINCIAS[(idx+1) % len(PROVINCIAS)]
     otras = "".join(f'<a href="{q["slug"]}.html">{e(q["nombre"])}</a>' for q in PROVINCIAS
@@ -282,9 +293,11 @@ def pagina_provincia(p, idx, empresas):
   </div>
 </section>
 {marquee()}
+{zonas_html}
 <section class="sec">
   <div class="wrap">
-    <div class="cards">{"".join(cajas)}</div>
+    {cab_toda}
+    <div class="cards">{cajas_html}</div>
     <p class="note muted">{SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa. ¿Eres una de estas empresas y quieres modificar o retirar tus datos? <a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Escríbenos</a>.</p>
     {otras_html}
     <div class="pager">
@@ -297,11 +310,54 @@ def pagina_provincia(p, idx, empresas):
 </main>
 ''' + pie(base) + "\n</body>\n</html>\n"
 
+
+# ---------- página de zona ----------
+def pagina_zona(p, z, empresas):
+    base = "../../"
+    datos = {}
+    propio = empresas.get(f'{p["slug"]}/{z["slug"]}', {})
+    for s in SERVICIOS:
+        datos[s["slug"]] = propio.get(s["slug"]) or empresas[p["slug"]][s["slug"]]
+    lugar = f'{z["nombre"]} ({p["nombre"]})' if p["nombre"] not in z["nombre"] else z["nombre"]
+    cajas_html = render_cajas(datos, lugar, base)
+    chips = "".join(f'<a class="chip" href="#{s["slug"]}">{icon(s["slug"], 16)}{e(s["nombre"])}</a>' for s in SERVICIOS)
+    otras = "".join(f'<a href="{o["slug"]}.html">{e(o["corto"])}</a>' for o in ZONAS[p["slug"]] if o["slug"] != z["slug"])
+    lugares = ", ".join(z["lugares"])
+    titulo_corto = f'{z["nombre"]} de {p["nombre"]}' if z["nombre"].startswith("Zona") else z["nombre"]
+    return head(f"Servicios urgentes en {titulo_corto}: cerrajeros, fontaneros y más | {SITE}",
+                f"Cerrajeros, fontaneros, electricistas, reformas, pintores, carpintería, aluminio y cristaleros en {titulo_corto}: {lugares}. Contacto directo por WhatsApp y web.",
+                base, f"/provincias/{p['slug']}/{z['slug']}") + cabecera(base) + f"""
+<main id="contenido">
+<section class="phero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Migas de pan"><a href="../../index.html">Inicio</a> / <a href="../../index.html#provincias">Provincias</a> / <a href="../{p["slug"]}.html">{e(p["nombre"])}</a> / <span>{e(z["corto"])}</span></nav>
+    <p class="tag">{e(p["nombre"])} · Zona</p>
+    <h1>Servicios urgentes<br><span class="lime">en {e(titulo_corto)}</span></h1>
+    <p class="phero__lead">Estas son las empresas de referencia en {e(titulo_corto)}. Pulsa WhatsApp para escribirles directamente o visita su web.</p>
+    <p class="zona__lugares"><b>Incluye:</b> {e(lugares)}.</p>
+    <div class="chips">{chips}</div>
+  </div>
+</section>
+{marquee()}
+<section class="sec">
+  <div class="wrap">
+    <div class="cards">{cajas_html}</div>
+    <p class="note muted">{SITE} es una plataforma de información: el presupuesto y el trabajo se acuerdan directamente con cada empresa. ¿Eres una de estas empresas y quieres modificar o retirar tus datos? <a href="https://wa.me/{WA_CONTACTO}" target="_blank" rel="noopener">Escríbenos</a>.</p>
+    <div class="near"><h4>Otras zonas de {e(p["nombre"])}</h4><div>{otras}</div></div>
+    <div class="pager">
+      <a href="../{p["slug"]}.html">← Todo {e(p["nombre"])}</a>
+      <a href="../../index.html#provincias">Todas las provincias</a>
+    </div>
+  </div>
+</section>
+</main>
+""" + pie(base) + "\n</body>\n</html>\n"
+
 TEL_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>'
 WA_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>'
 
 def sitemap():
-    urls = [f"{DOMINIO}/"] + [f"{DOMINIO}/provincias/{p['slug']}" for p in PROVINCIAS]
+    urls = [f"{DOMINIO}/"] + [f"{DOMINIO}/provincias/{p['slug']}" for p in PROVINCIAS] + [f"{DOMINIO}/provincias/{ps}/{z['slug']}" for ps, zs in ZONAS.items() for z in zs]
     body = "".join(f"<url><loc>{u}</loc><lastmod>{date.today().isoformat()}</lastmod></url>" for u in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>\n'
 
@@ -313,9 +369,15 @@ def main():
     w("index.html", portada())
     for i, p in enumerate(PROVINCIAS):
         w(f"provincias/{p['slug']}.html", pagina_provincia(p, i, empresas))
+    nz = 0
+    for ps, zs in ZONAS.items():
+        p = next(x for x in PROVINCIAS if x["slug"] == ps)
+        os.makedirs(os.path.join(ROOT, "provincias", ps), exist_ok=True)
+        for z in zs:
+            w(f"provincias/{ps}/{z['slug']}.html", pagina_zona(p, z, empresas)); nz += 1
     w("sitemap.xml", sitemap())
     w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {DOMINIO}/sitemap.xml\n")
-    print(f"Generadas {1 + len(PROVINCIAS)} páginas.")
+    print(f"Generadas {1 + len(PROVINCIAS)} páginas + {nz} zonas.")
 
 if __name__ == "__main__":
     main()

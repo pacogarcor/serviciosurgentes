@@ -1,0 +1,18 @@
+{
+  "madrid": [
+    {"slug": "centro-norte", "nombre": "Madrid capital – Centro y Norte", "corto": "Centro y Norte", "lugares": ["Centro", "Salamanca", "Chamberí", "Retiro", "Chamartín", "Tetuán", "Moncloa", "Fuencarral", "Hortaleza", "Ciudad Lineal", "Barajas"]},
+    {"slug": "sur-este", "nombre": "Madrid capital – Sur y Este", "corto": "Sur y Este", "lugares": ["Arganzuela", "Latina", "Carabanchel", "Usera", "Villaverde", "Puente de Vallecas", "Villa de Vallecas", "Moratalaz", "Vicálvaro", "San Blas"]},
+    {"slug": "zona-sur", "nombre": "Zona Sur", "corto": "Zona Sur", "lugares": ["Getafe", "Leganés", "Fuenlabrada", "Móstoles", "Alcorcón", "Parla", "Pinto", "Valdemoro"]},
+    {"slug": "corredor-del-henares", "nombre": "Corredor del Henares", "corto": "Corredor del Henares", "lugares": ["Alcalá de Henares", "Torrejón de Ardoz", "Coslada", "San Fernando de Henares", "Rivas-Vaciamadrid", "Arganda del Rey"]},
+    {"slug": "zona-norte", "nombre": "Zona Norte", "corto": "Zona Norte", "lugares": ["Alcobendas", "San Sebastián de los Reyes", "Tres Cantos", "Colmenar Viejo", "Algete"]},
+    {"slug": "oeste-sierra", "nombre": "Zona Oeste y Sierra", "corto": "Oeste y Sierra", "lugares": ["Pozuelo de Alarcón", "Las Rozas", "Majadahonda", "Boadilla del Monte", "Villaviciosa de Odón", "Collado Villalba", "Galapagar"]}
+  ],
+  "barcelona": [
+    {"slug": "barcelona-ciudad", "nombre": "Barcelona ciudad", "corto": "Barcelona ciudad", "lugares": ["Ciutat Vella", "Eixample", "Sants-Montjuïc", "Les Corts", "Sarrià-Sant Gervasi", "Gràcia", "Horta-Guinardó", "Nou Barris", "Sant Andreu", "Sant Martí"]},
+    {"slug": "baix-llobregat", "nombre": "L'Hospitalet y Baix Llobregat", "corto": "Baix Llobregat", "lugares": ["L'Hospitalet de Llobregat", "Cornellà", "El Prat de Llobregat", "Sant Boi", "Castelldefels", "Esplugues", "Gavà", "Viladecans"]},
+    {"slug": "barcelones-nord-maresme", "nombre": "Barcelonès Nord y Maresme", "corto": "Barcelonès Nord y Maresme", "lugares": ["Badalona", "Santa Coloma de Gramenet", "Sant Adrià de Besòs", "Mataró", "Premià de Mar", "Calella"]},
+    {"slug": "valles-occidental", "nombre": "Vallès Occidental", "corto": "Vallès Occidental", "lugares": ["Sabadell", "Terrassa", "Sant Cugat del Vallès", "Rubí", "Cerdanyola del Vallès"]},
+    {"slug": "valles-oriental", "nombre": "Vallès Oriental", "corto": "Vallès Oriental", "lugares": ["Granollers", "Mollet del Vallès", "Sant Celoni", "Cardedeu", "La Llagosta"]},
+    {"slug": "penedes-garraf-anoia", "nombre": "Penedès, Garraf y Anoia", "corto": "Penedès, Garraf y Anoia", "lugares": ["Vilafranca del Penedès", "Vilanova i la Geltrú", "Sitges", "Igualada", "Martorell"]}
+  ]
+}

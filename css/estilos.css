@@ -176,3 +176,13 @@ h2{font-size:clamp(40px,6vw,76px)}
 .card__dir{font-size:13px;color:#c9cec4}
 .btn--tel{background:var(--lime);color:#0a0a0a}.btn--tel:hover{background:var(--lime-d)}
 .note a{color:var(--lime)}
+
+/* zonas */
+.sec--zonas{padding:64px 0 0}
+.pgrid--zonas{grid-template-columns:repeat(3,1fr)}
+.pgrid--zonas .pcell{padding:22px 20px}
+.pgrid--zonas .pcell__name{font-size:26px}
+.zona__lugares{margin-top:16px;color:var(--muted);font-size:15px;max-width:760px}
+.zona__lugares b{color:var(--ink)}
+@media (max-width:860px){.pgrid--zonas{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.pgrid--zonas{grid-template-columns:1fr}}
