@@ -105,7 +105,8 @@ def cabecera(base, actual=""):
       <a class="btn btn--lime" href="https://wa.me/{WA_CONTACTO}?text={urllib.parse.quote('Hola, quiero anunciar mi empresa en ' + SITE)}" target="_blank" rel="noopener">Anúnciate ↗</a>
     </nav>
   </div>
-</header>'''
+</header>
+''' + marquee(top=True)
 
 def pie(base):
     return f'''<footer class="foot">
@@ -141,9 +142,10 @@ def head(title, desc, base, canonical):
 </head>
 <body>'''
 
-def marquee():
+def marquee(top=False):
     t = " · ".join(s["nombre"].upper() for s in SERVICIOS) + " · "
-    return f'<div class="marquee" aria-hidden="true"><div class="marquee__track"><span>{t*2}</span><span>{t*2}</span></div></div>'
+    cls = "marquee marquee--top" if top else "marquee"
+    return f'<div class="{cls}" aria-hidden="true"><div class="marquee__track"><span>{t*2}</span><span>{t*2}</span></div></div>'
 
 # ---------- portada ----------
 def portada():

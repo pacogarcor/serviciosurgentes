@@ -186,3 +186,8 @@ h2{font-size:clamp(40px,6vw,76px)}
 .zona__lugares b{color:var(--ink)}
 @media (max-width:860px){.pgrid--zonas{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.pgrid--zonas{grid-template-columns:1fr}}
+
+/* banda superior de servicios */
+.marquee--top{border-top:0}
+.marquee--top .marquee__track{animation-duration:45s}
+.marquee--top span{font-size:17px;padding:10px 0}
