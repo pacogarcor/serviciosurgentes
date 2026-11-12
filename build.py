@@ -186,7 +186,7 @@ def portada():
       <p class="search__err" role="alert" hidden>No encontramos esa provincia. Elige una de la lista.</p>
     </form>
     <div class="hero__lead">
-      <p>Una urgencia no espera. Elige tu provincia y encontrarás <b>8 servicios urgentes</b> con su empresa local, su WhatsApp y su web para contactar al momento.</p>
+      <p>Una urgencia no espera. Elige tu provincia y encontrarás <b>8 servicios urgentes</b> con la mejor empresa local, su WhatsApp y su web para contactar al momento.</p>
       <a class="arrow" href="#provincias">Ver las {total} provincias ↓</a>
     </div>
     <ul class="stats"><li><b>{total}</b> provincias</li><li><b>8</b> servicios</li><li><b>{total*8}</b> empresas</li><li><b>24 h</b> contacto directo</li></ul>
