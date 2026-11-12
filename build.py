@@ -13,7 +13,7 @@ from datetime import date
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "serviciosurgentes.es"
 DOMINIO = "https://serviciosurgentes.es"
-WA_CONTACTO = "34600000000"  # WhatsApp del propietario del directorio (cámbialo)
+WA_CONTACTO = "34644270991"  # WhatsApp del propietario del directorio (cámbialo)
 
 def load(name):
     with open(os.path.join(ROOT, "data", name), encoding="utf-8") as f:
