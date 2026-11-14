@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sgrzglyk/public_html/
+    - export DEPLOYPATH=/home/sgrzglyk/serviciosurgentes.es/
     - /bin/rsync -a --exclude='.git' --exclude='.cpanel.yml' ./ $DEPLOYPATH
